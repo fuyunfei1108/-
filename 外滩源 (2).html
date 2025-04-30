@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外滩源时光指南</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ccc;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 主题路线卡片样式 */
+        .route-card {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 建筑信息卡片样式 */
+        .building-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 提示信息样式 */
+        .hint {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* 答案框样式 */
+        .answer-box {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 6px;
+        }
+
+        /* 标题样式 */
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #333;
+        }
+
+        /* 列表样式 */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* 按钮样式 */
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* 输入框样式 */
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 历史谜题挑战部分样式 */
+        #game {
+            margin-top: 30px;
+        }
+
+        /* 推荐路线部分样式 */
+        #route {
+            margin-top: 30px;
+        }
+
+        /* 悬停提示样式 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 400px;
+            background-color: #555;
+            color: #fff;
+            text-align: left;
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="#home">首页</a>
+        <a href="#routes">主题路线</a>
+        <a href="#buildings">建筑索引</a>
+    </div>
+
+    <section id="home">
+        <h1>外滩源历史建筑导览</h1>
+        <p>探索19世纪末至20世纪30年代的历史建筑群，感受中西文化交融</p>
+    </section>
+
+    <section id="routes">
+        <h2>主题路线推荐</h2>
+        <div class="card route-card">
+            <h3>邬达克建筑与抗战记忆之旅</h3>
+            <p>总耗时：2.5小时</p>
+            <ul>
+                <li>真光大楼（装饰艺术派代表作）</li>
+                <li>女青年会大楼（难民收容所历史）</li>
+                <li>亚洲文会大楼（鲁迅文化印记）</li>
+            </ul>
+            <p>导航指引：沿圆明园路向南直行，右转至虎丘路...</p>
+        </div>
+    </section>
+
+    <section id="buildings">
+        <h2>建筑索引</h2>
+        <div class="building-info">
+            <div class="card">
+                <h3>原英国领事馆</h3>
+                <p>地址：中山东一路33号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1872年：上海最早领事馆</li>
+                    <li>1937年：作为难民庇护所</li>
+                    <li>李鸿章在此进行外交交涉</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>壹号酒窖下午茶（人均300元）</li>
+                    <li>历史照片展（免费参观）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>新天安堂</h3>
+                <p>地址：南苏州路107号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1886年：侨民教堂建成</li>
+                    <li>1937年：被日军用作瞭望塔</li>
+                    <li>孙中山曾在此礼拜</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>新天安堂咖啡馆（咖啡50元）</li>
+                    <li>外白渡桥夜景拍摄点</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>女青年会大楼</h3>
+                <p>地址：圆明园路133号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1933年：女性运动地标落成</li>
+                    <li>1937年：设立难民收容所</li>
+                    <li>宋美龄在此举办慈善活动</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>免费历史展（周一闭馆）</li>
+                    <li>顶楼观景台（需预约）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>真光大楼</h3>
+                <p>地址：圆明园路209号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1930年：邬达克设计建筑</li>
+                    <li>1937年：《申报》刊登抗日文章</li>
+                    <li>鲁迅、茅盾在此投稿</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>邬达克建筑导览（免费）</li>
+                    <li>顶层艺术空间（周二开放）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>广学大楼</h3>
+                <p>地址：虎丘路20号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1932年：基督教广学会总部</li>
+                    <li>1937年：出版抗日文献</li>
+                    <li>与真光大楼形成建筑群</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>广学咖啡（买一赠一）</li>
+                    <li>建筑摄影路线推荐</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>兰心大楼</h3>
+                <p>地址：虎丘路128号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1927年：兰心大戏院附属建筑</li>
+                    <li>1937年：举办抗日义演</li>
+                    <li>无明确名人事件</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>老上海电影主题展</li>
+                    <li>虎丘路艺术商店</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>安培洋行大楼</h3>
+                <p>地址：圆明园路97号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1904年：石库门风格起源建筑</li>
+                    <li>1937年：地下抗日联络点</li>
+                    <li>影响上海民居建筑风格</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>石库门文化体验馆</li>
+                    <li>顶层观景平台（消费即可进入）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>亚洲文会大楼</h3>
+                <p>地址：虎丘路20号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1932年：中国最早博物院</li>
+                    <li>1937年：保护珍贵文物</li>
+                    <li>鲁迅参与文物捐赠</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>外滩美术馆特展（门票50元）</li>
+                    <li>亚洲文会历史导览</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>哈密大楼</h3>
+                <p>地址：圆明园路169号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1928年：沙咪洋行驻地</li>
+                    <li>1945年：《文汇报》复刊地</li>
+                    <li>无明确抗日事件</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>老报馆主题咖啡馆</li>
+                    <li>圆明园路文化市集</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>众安·美丰大楼</h3>
+                <p>地址：北京东路270号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1896年：通和洋行设计</li>
+                    <li>1937年：组织抗日募捐</li>
+                    <li>建筑师聚集地</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>金融历史博物馆（免费）</li>
+                    <li>建筑细节导览</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>中实大楼</h3>
+                <p>地址：北京东路240号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1930年：中国实业银行总部</li>
+                    <li>无明确抗日事件</li>
+                    <li>金融历史见证建筑</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>银行金库参观（需预约）</li>
+                    <li>北京路金融街漫步</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>益丰·外滩源</h3>
+                <p>地址：北京东路99号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1911年：商业枢纽建成</li>
+                    <li>1937年：被日军占用</li>
+                    <li>无名人事件</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>外滩源商业综合体</li>
+                    <li>夜间灯光秀（免费）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>圆明园公寓</h3>
+                <p>地址：圆明园路185号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1904年：法商永兴洋行驻地</li>
+                    <li>钱文忠教授旧居</li>
+                    <li>抗日文化人聚居地</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>创意办公空间参观</li>
+                    <li>公寓花园下午茶</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>光陆大戏院</h3>
+                <p>地址：虎丘路146号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1928年：上海最早豪华影院</li>
+                    <li>1937年：放映爱国影片</li>
+                    <li>阮玲玉出席首映式</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>光影艺术展（夜间开放）</li>
+                    <li>老电影修复展</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>协进大楼</h3>
+                <p>地址：南苏州路79号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1920s：中华基督教协进会</li>
+                    <li>林语堂在此发表演讲</li>
+                    <li>无抗日记录</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>宗教文化主题导览</li>
+                    <li>苏州河畔景观步道</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>原划船俱乐部</h3>
+                <p>地址：南苏州路76号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1905年：侨民划船俱乐部</li>
+                    <li>无明确抗日事件</li>
+                    <li>上海最早体育建筑</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>苏州河游船码头</li>
+                    <li>俱乐部餐厅（人均100元）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="building-info">
+            <div class="card">
+                <h3>原教会公寓</h3>
+                <p>地址：虎丘路58号</p>
+                <h4>历史时间轴</h4>
+                <ul>
+                    <li>1899年：圣公会教士公寓</li>
+                    <li>无重要历史事件</li>
+                    <li>宗教用途延续</li>
+                </ul>
+                <h4>周边推荐</h4>
+                <ul>
+                    <li>教会文化展览馆</li>
+                    <li>养生主题体验中心</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="game">
+        <h2>历史谜题挑战</h2>
+        <div class="card answer-box">
+            <p>问题：女青年会大楼在抗战期间收容了多少难民？</p>
+            <p class="hint">提示：查看建筑详情页的历史事件</p>
+            <input type="number" id="answer" placeholder="输入答案" required>
+            <button onclick="checkAnswer()">提交答案</button>
+            <div id="result" style="margin-top: 10px"></div>
+        </div>
+    </section>
+
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById('answer').value;
+            const resultDiv = document.getElementById('result');
+            if (answer === '5000') {
+                resultDiv.innerHTML = '🎉 答对了！<br>奖励：解锁隐藏故事（点击查看）';
+                resultDiv.innerHTML += '<button onclick="showStory()">查看故事</button>';
+            } else {
+                resultDiv.textContent = '❌ 答案错误！正确答案是5000';
+            }
+        }
+
+        function showStory() {
+            alert('隐藏故事：宋美龄曾带领志愿者在此缝制绷带，救助伤员');
+        }
+    </script>
+
+    <h1>外滩源建筑智能路线规划</h1>
+
+    <div class="input-group">
+        <label>文化性权重 (α):</label>
+        <input type="number" id="alpha" step="0.1" min="0" max="1" value="0.4">
+        <label>商业性权重 (β):</label>
+        <input type="number" id="beta" step="0.1" min="0" max="1" value="0.6">
+        <button onclick="generateRoute()">生成个性化路线</button>
+    </div>
+
+    <div id="route"></div>
+
+    <script>
+        const buildings = [
+            {
+                name: '原英国领事馆（外滩源壹号）',
+                c: [4.0, 2.0, 3.0],
+                cTotal: 9.0,
+                cReason: '上海最早领事馆（1872），抗战难民庇护所，李鸿章交涉地。',
+                b: [3.0, 3.0, 2.5],
+                bTotal: 8.5,
+                bReason: '高端餐饮+艺术展览，人均300元以上。'
+            },
+            {
+                name: '新天安堂',
+                c: [3.0, 1.0, 3.0],
+                cTotal: 7.0,
+                cReason: '侨民教堂（1886），日军瞭望塔，孙中山礼拜。',
+                b: [3.0, 2.0, 2.0],
+                bTotal: 7.0,
+                bReason: '咖啡馆+拍照，低消费但时段局限。'
+            },
+            {
+                name: '女青年会大楼',
+                c: [3.5, 3.0, 1.5],
+                cTotal: 8.0,
+                cReason: '女性运动地标（1933），难民收容所，宋美龄慈善活动。',
+                b: [4.0, 3.0, 3.0],
+                bTotal: 10.0,
+                bReason: '免费参观，灵活适配行程。'
+            },
+            {
+                name: '真光大楼',
+                c: [3.0, 2.0, 2.5],
+                cTotal: 7.5,
+                cReason: '邬达克设计（1930），《申报》抗日文章，鲁迅、茅盾投稿。',
+                b: [3.0, 2.5, 3.0],
+                bTotal: 8.5,
+                bReason: '免费参观，邬达克建筑特色吸引游客。'
+            },
+            {
+                name: '广学大楼',
+                c: [2.5, 1.5, 2.0],
+                cTotal: 6.0,
+                cReason: '学术机构（1932），部分抗日文献出版，与真光大楼联动。',
+                b: [3.0, 2.0, 3.0],
+                bTotal: 8.0,
+                bReason: '免费参观，与真光大楼联动游览。'
+            },
+            {
+                name: '兰心大楼',
+                c: [2.0, 0.5, 1.5],
+                cTotal: 4.0,
+                cReason: '戏院附属建筑（1927），少量抗日义演，无明确名人事件。',
+                b: [3.0, 2.0, 3.0],
+                bTotal: 8.0,
+                bReason: '免费参观，历史建筑打卡。'
+            },
+            {
+                name: '安培洋行大楼',
+                c: [3.0, 1.5, 2.0],
+                cTotal: 6.5,
+                cReason: '石库门起源（1904），地下联络点，建筑风格影响上海民居。',
+                b: [4.0, 3.0, 3.0],
+                bTotal: 10.0,
+                bReason: '免费开放，含零售与餐饮，消费灵活。'
+            },
+            {
+                name: '亚洲文会大楼（外滩美术馆）',
+                c: [4.0, 2.0, 2.5],
+                cTotal: 8.5,
+                cReason: '最早博物院（1932），文物保护，鲁迅参与活动。',
+                b: [2.0, 2.0, 1.5],
+                bTotal: 5.5,
+                bReason: '门票中等，展览内容专业但时段局限。'
+            },
+            {
+                name: '哈密大楼（原沙咪大楼）',
+                c: [2.5, 1.0, 2.0],
+                cTotal: 5.5,
+                cReason: '报业历史（1928），《文汇报》复刊，无明确抗日事件。',
+                b: [3.0, 2.0, 3.0],
+                bTotal: 8.0,
+                bReason: '免费参观，报业文化打卡。'
+            },
+            {
+                name: '众安·美丰大楼',
+                c: [3.0, 1.0, 1.5],
+                cTotal: 5.5,
+                cReason: '建筑师聚集地（1896），少量抗日募捐活动，通和洋行设计。',
+                b: [3.0, 2.0, 3.0],
+                bTotal: 8.0,
+                bReason: '免费参观，建筑细节吸引摄影爱好者。'
+            },
+            {
+                name: '中实大楼（中国实业银行）',
+                c: [2.5, 1.0, 1.0],
+                cTotal: 4.5,
+                cReason: '金融历史（1930），无明确抗日事件，无直接名人关联。',
+                b: [3.0, 2.0, 3.0],
+                bTotal: 8.0,
+                bReason: '免费参观，金融历史展示。'
+            },
+            {
+                name: '益丰·外滩源',
+                c: [2.0, 1.0, 1.0],
+                cTotal: 4.0,
+                cReason: '商业枢纽（1911），日军占用，无名人事件。',
+                b: [4.0, 3.0, 3.0],
+                bTotal: 10.0,
+                bReason: '商业综合体，无门票，消费层级丰富。'
+            },
+            {
+                name: '圆明园公寓',
+                c: [2.5, 0.5, 1.0],
+                cTotal: 4.0,
+                cReason: '洋行驻地（1904），钱文忠旧居，少量抗日文化人居住。',
+                b: [3.0, 2.0, 3.0],
+                bTotal: 8.0,
+                bReason: '免费参观，创意办公空间打卡。'
+            },
+            {
+                name: '光陆大戏院',
+                c: [2.5, 2.0, 1.5],
+                cTotal: 6.0,
+                cReason: '早期影院（1928），爱国影片放映，阮玲玉出席首映。',
+                b: [2.0, 1.0, 3.0],
+                bTotal: 6.0,
+                bReason: '免费光影秀，但需搭配其他行程。'
+            },
+            {
+                name: '协进大楼',
+                c: [2.5, 0.0, 3.0],
+                cTotal: 5.5,
+                cReason: '宗教总部（1920s），林语堂演讲，无抗日记录。',
+                b: [1.0, 0.0, 3.0],
+                bTotal: 4.0,
+                bReason: '未开放内部，仅适合外观游览。'
+            },
+            {
+                name: '原划船俱乐部',
+                c: [2.0, 0.5, 1.0],
+                cTotal: 3.5,
+                cReason: '侨民社交（1905），无明确抗日事件，无名人关联。',
+                b: [3.0, 2.0, 2.0],
+                bTotal: 7.0,
+                bReason: '高端餐饮，需消费体验。'
+            },
+            {
+                name: '原教会公寓',
+                c: [1.5, 0.5, 0.5],
+                cTotal: 2.5,
+                cReason: '宗教用途（1899），无重要历史事件。',
+                b: [2.0, 1.0, 2.0],
+                bTotal: 5.0,
+                bReason: '养生服务，消费门槛较高。'
+            }
+        ];
+
+        function generateRoute() {
+            const alpha = parseFloat(document.getElementById('alpha').value);
+            const beta = parseFloat(document.getElementById('beta').value);
+
+            if (isNaN(alpha) || isNaN(beta) || alpha + beta!== 1) {
+                alert('请输入有效的权重值（α+β=1）');
+                return;
+            }
+
+            const scoredBuildings = buildings.map(building => ({
+               ...building,
+                total: alpha * building.cTotal + beta * building.bTotal
+            })).sort((a, b) => b.total - a.total);
+
+            let html = '<h2>推荐路线（综合得分排序）</h2>';
+            html += '<ol>';
+            scoredBuildings.forEach((building, index) => {
+                html += `
+                    <li>
+                        <div class="tooltip">
+                            ${index + 1}. ${building.name} 
+                            <span class="tooltiptext">
+                                <strong>文化性</strong>(${building.cTotal}/10)<br>
+                                历史价值: ${building.c[0]}/4<br>
+                                抗日关联: ${building.c[1]}/3<br>
+                                名人事件: ${building.c[2]}/3<br>
+                                依据: ${building.cReason}<br>
+                                <br>
+                                <strong>商业性</strong>(${building.bTotal}/10)<br>
+                                开放时间: ${building.b[0]}/4<br>
+                                参观耗时: ${building.b[1]}/3<br>
+                                票价/消费: ${building.b[2]}/3<br>
+                                依据: ${building.bReason}
+                            </span>
+                        </div>
+                        - 综合得分: ${building.total.toFixed(1)}
+                    </li>
+                `;
+            });
+            html += '</ol>';
+            document.getElementById('route').innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>    
